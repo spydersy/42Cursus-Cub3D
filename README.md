@@ -76,8 +76,8 @@ R          1000 1000
 quit the program cleanly.
 
 ### ./cub3D map.cub --save :
-![saveCub3D GIF](https://github.com/spydersy/42Cursus-ft_containers/blob/master/gif/saveCub3D.gif)
+![saveCub3D GIF](https://github.com/spydersy/pushed_cub/blob/master/gif/saveCub3D.gif)
 
 ### ./cub3D map.cub :
-![Cub3D GIF](https://github.com/spydersy/42Cursus-ft_containers/blob/master/gif/cub3D.gif)
+![Cub3D GIF](https://github.com/spydersy/pushed_cub/blob/master/gif/cub3D.gif)
 
