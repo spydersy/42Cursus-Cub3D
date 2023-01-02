@@ -1,68 +1,83 @@
-# 42Cursus-cub3D [![jaeskim's 42Project Score](https://badge42.herokuapp.com/api/project/abelarif/cub3d)](https://github.com/JaeSeoKim/badge42)
-
-This project is inspired by the world-famous eponymous 90’s game, which was the first FPS ever. It will enable you to explore ray-casting. Your goal will be to make a dynamic view inside a maze, in which you’ll have to find your way.
-
-## Goals:
-This project’s objectives are similar to all this first year’s objectives: Rigor, use of C, use of basic algorithms, information research etc.
-As a graphic design project, cub3D will enable you to improve your skills in these areas: windows, colors, events, fill shapes, etc.
-To conclude cub3D is a remarkable playground to explore the playful practical applications of mathematics without having to understand the specifics.
-With the help of the numerous documents available on the internet, you will use mathematics as a tool to create elegant and efficient algorithms.<br/>
-<p align="center">
-	<img src="./imgs/image-011.png" >
-</p>
-it's recommended to test the original game before starting this project:
-
-http://users.atw.hu/wolf3d/
+# Cub3D
 
 
+Cub3D is a project made in C and was about building a 3D Game with [MiniLibX](https://github.com/keuhdall/images_example) using **Ray Casting Algorithm**. And without any external Library/Framework.
 
-### Common Instructions:
+## MiniLibX
+MiniLibX is a tiny graphics library which allows you to do the most basic things for rendering something in screens without any knowledge of X-Window and Cocoa. It provides so-called simple window creation, a questionable drawing tool, half-ass image functions and a weird event management system.
+[MiniLibX documentation.](https://harm-smits.github.io/42docs/libs/minilibx)
 
-- You must create a “realistic” 3D graphical representation of the inside of a maze from a first person perspective. You have to create this representation using the Ray-Casting principles mentioned earlier.<br/>
+## Run:
+* Ensure that MLX is installed on your machine
+* `$> make`
+* run `./cub3D <CONF_FILE>` to execute the program or `./cub3D <CONF_FILE> --save` to take a screenshot of the first frame.
+* You can edit the configuration file as you want:
+  - **NO, EA, SO, WE** : Texture files in xpm format.
+  - **C, F** : Floor and ceiling colors in RGB format.
+  - **S** : Sprite object in xpm format.
+  - **R** : Screen resolution.
+  - The Map must be closed and can contain :
+    - **0** : empty space.
+    - **1** : wall.
+    - **2** : sprite object.
+    - **N, S, W, E** : player start position and spawning orientation.
+   
+### Example of a validated config file :
 
-- External functs:
-  - open, close, read, write, malloc, free, perror, strerror, exit.
-  - All functions of the math library (-lm man man 3 math)
-  - All functions of the [MinilibX](https://github.com/spydersy/minilibx-linux).
+```
+NO         xpm/N.xpm
+C          25,153,0
+EA         xpm/E.xpm
+SO         xpm/S.xpm
+WE         xpm/W.xpm
+S          xpm/SP.xpm
+F          25,51,255
+R          1000 1000
 
-The constraints are as follows:
+ 111111111111111111111111111111111111111111              1      111111111
+1000000000000000000000000000000000000000001             101     100000001
+ 111111111111111111111111111111111111111111              1      100010101
+                                                        1111    100010101
+                                                        1111     111 1 1
+                                                         11
+                                                        1001
+                11111  11111111111111111111             10001
+           1111100001  100011111000000001001            100001
+        1111100000001  100000011010111111101            1000001
+  1111111100000000001  10000000000011    101            10000001
+  1000000000000000001  10000000000111   11011111111     100000001
+  1100000000000000001  10000000000001   11000000001     1000000001
+  1111111111111111111  11111110111111   11111111101     11101100001
+                            10001               101     100000000001
+  11111111111111111     111110001111111111111   101111  1000000000001
+ 111000000000000011    1100000000000000000001   100001  10000000000001
+  10000000000000001    1000000000000000000001   1100011 10000000000001
+  11000000000000011    1100000000000111110001   1000001 10000010000001
+  1000000000000001      1000000000001   10001   1000001 1000000000001
+  11000000000000011111111000000000001   10001   11000011100000000001
+   1000000100000010100000100000010001  100001   1000000000000000001
+   100000000000000N000000000001111111   11111  1000111111000000001
+   10000000002000000020000000000001            10001    100200001
+ 111000000000202000000000010001111111111111111110001    10000001
+ 111111000020000000000000100000000000000000000000001    1000001
+     11111100000000000000000011111111111111111000001    100001
+         1111110000000000111111            111111111    10001
+             11111111111111                             1001
+                                                        101
+                                                        11
+                                                        1
+```
 
-- You must use the miniLibX. Either the version that is available on the operating system, or from its sources. If you choose to work with the sources, you will need to apply the same rules for your libft as those written above in Common Instructions part.
-- The management of your window must remain smooth: changing to another window, minimizing, etc.
-- Display different wall textures (the choice is yours) that vary depending on which side the wall is facing (North, South, East, West).
+# Demo:
+- The left and right arrow keys of the keyboard allow you to look left and right in the maze.
+- The W, A, S, and D keys allow you to move the point of view through the maze.
+- Pressing ESC close the window and quit the program cleanly.
+- Clicking on the red cross on the window’s frame close the window and
+quit the program cleanly.
 
+### ./cub3D map.cub --save :
+![saveCub3D GIF](https://github.com/spydersy/42Cursus-ft_containers/blob/master/gif/saveCub3D.gif)
 
-<!-- - Not interpret unclosed quotes or unspecified special characters like \ or ;.<br/>
-- Not use more than one global variable, think about it and be ready to explain why you do it.<br/>
-- Show a prompt when waiting for a new command.<br/>
-- Have a working History.<br/>
-- Search and launch the right executable (based on the PATH variable or by using relative or absolute path)<br/>
-- It must implement the builtins:<br/>
-  - echo with option -n<br/>
-  - cd with only a relative or absolute path<br/>
-  - pwd with no options<br/>
-  - export with no options<br/>
-  - unset with no options<br/>
-  - env with no options or arguments<br/>
-  - exit with no options<br/>
-- ’ inhibit all interpretation of a sequence of characters.<br/>
-- " inhibit all interpretation of a sequence of characters except for $.<br/>
-- Redirections:<br/>
-  - “<“ should redirect input.<br/>
-  - “>“ should redirect output.<br/>
-  - “<<” read input from the current source until a line containing only the delimiter is seen. it doesn’t need to update history!<br/>
-  - “>>” should redirect output with append mode.<br/>
-- Pipes | The output of each command in the pipeline is connected via a pipe to the input of the next command.<br/>
-- Environment variables ($ followed by characters) should expand to their values.<br/>
-- $? should expand to the exit status of the most recently executed foreground pipeline.<br/>
-- ctrl-C ctrl-D ctrl-\ should work like in bash.<br/>
-- When interactive:<br/>
-  - ctrl-C print a new prompt on a newline.<br/>
-  - ctrl-D exit the shell.<br/>
-  - ctrl-\ do nothing.<br/>
+### ./cub3D map.cub :
+![Cub3D GIF](https://github.com/spydersy/42Cursus-ft_containers/blob/master/gif/cub3D.gif)
 
-<p readline function can produce some leak you don’t need to fix this.<br/>
-But beware your own code should not produce leaks.<br/>
-You should limit yourself to the subject description.<br/>
-Anything not asked is not required.<br/>
-For every point, if you have any doubt take bash as a reference.<br/></p> -->
